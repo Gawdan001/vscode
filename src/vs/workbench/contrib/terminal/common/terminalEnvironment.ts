@@ -178,7 +178,7 @@ export function getLangEnvVariable(locale?: string): string {
 		zh: 'CN',
 	};
 	if (parts[0] in languageVariants) {
-		parts.push(languageVariants[parts[0]]);
+		return `${parts[0]}_${languageVariants[parts[0]]}.UTF-8`;
 	}
 	return parts.join('_') + '.UTF-8';
 }
