@@ -111,8 +111,7 @@ suite('Workbench - TerminalEnvironment', () => {
 			strictEqual(getLangEnvVariable('zh'), 'zh_CN.UTF-8');
 		});
 		test('should set language variant based on full locale', () => {
-			strictEqual(getLangEnvVariable('en-AU'), 'en_AU.UTF-8');
-			strictEqual(getLangEnvVariable('en-au'), 'en_AU.UTF-8');
+			strictEqual(getLangEnvVariable('fa-KE'), 'fa_KE.UTF-8');
 			strictEqual(getLangEnvVariable('fa-ke'), 'fa_KE.UTF-8');
 		});
 	});
