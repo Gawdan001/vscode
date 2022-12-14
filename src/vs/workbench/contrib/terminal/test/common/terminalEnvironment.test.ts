@@ -19,11 +19,6 @@ suite('Workbench - TerminalEnvironment', () => {
 			strictEqual(env['COLORTERM'], 'truecolor');
 			strictEqual(env['LANG'], 'en_US.UTF-8');
 		});
-		test('should use language variant for LANG that is provided in locale', () => {
-			const env: { [key: string]: any } = {};
-			addTerminalEnvironmentKeys(env, '1.2.3', 'en-au', 'on');
-			strictEqual(env['LANG'], 'en_AU.UTF-8', 'LANG is equal to the requested locale with UTF-8');
-		});
 		test('should fallback to en_US when no locale is provided', () => {
 			const env2: { [key: string]: any } = { FOO: 'bar' };
 			addTerminalEnvironmentKeys(env2, '1.2.3', undefined, 'on');
@@ -33,6 +28,16 @@ suite('Workbench - TerminalEnvironment', () => {
 			const env3 = { LANG: 'replace' };
 			addTerminalEnvironmentKeys(env3, '1.2.3', undefined, 'on');
 			strictEqual(env3['LANG'], 'en_US.UTF-8', 'LANG is set to the fallback LANG');
+		});
+		test('should set locale to zh_CN when the language is Simplified Chinese', () => {
+			const env3 = { LANG: 'en_US.UTF-8' };
+			addTerminalEnvironmentKeys(env3, '1.2.3', 'zh-hans', 'on');
+			strictEqual(env3['LANG'], 'zh_CN.UTF-8', 'LANG is equal to zh_CN.UTF-8');
+		});
+		test('should set locale to zh_TW when the language is Traditional Chinese', () => {
+			const env3 = { LANG: 'en_US.UTF-8' };
+			addTerminalEnvironmentKeys(env3, '1.2.3', 'zh-hant-fi', 'on');
+			strictEqual(env3['LANG'], 'zh_TW.UTF-8', 'LANG is equal to zh_TW.UTF-8');
 		});
 		test('should override existing LANG', () => {
 			const env4 = { LANG: 'en_AU.UTF-8' };

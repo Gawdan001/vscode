@@ -180,6 +180,7 @@ export function getLangEnvVariable(locale?: string): string {
 	if (parts[0] in languageVariants) {
 		return `${parts[0]}_${languageVariants[parts[0]]}.UTF-8`;
 	}
+	parts[1] = parts[1].toUpperCase();
 	return parts.join('_') + '.UTF-8';
 }
 
